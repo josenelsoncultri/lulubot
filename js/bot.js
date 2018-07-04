@@ -1,0 +1,77 @@
+var respostas = null;
+var respostasDefault = null;
+var delay = 2000;
+
+$(document).ready(function(){
+    $.getJSON("data/custom_answers.json", function(data){
+        respostas = $.parseJSON(JSON.stringify(data));
+    });
+    $.getJSON("data/default_answers.json", function(data){
+        respostasDefault = $.parseJSON(JSON.stringify(data));
+    });    
+
+
+    $("#user_message").change(function(e){
+        var chatHistory = $("#chat_history");
+        var actual_message = "<strong>você:</strong> " + $(this).val();
+        var bot_answer = "LuluBOT: " + processarResposta($(this).val());
+
+        chatHistory.html(chatHistory.html() + (chatHistory.html().trim() != "" ? "<br />" : "") + actual_message);
+        $(this).val("");
+
+        lockText();
+        setTimeout(function(){
+            chatHistory.html(chatHistory.html() + (chatHistory.html().trim() != "" ? "<br />" : "") + bot_answer);
+            doScroll();
+            unlockText();
+        }, delay);
+
+        doScroll();
+    });
+});
+
+function lockText()
+{
+    var user_message = $("#user_message");
+    user_message.prop("disabled", true);
+    user_message.val("LuluBOT está digitando, aguarde...");
+}
+
+function unlockText()
+{
+    var user_message = $("#user_message");
+    user_message.prop("disabled", false);
+    user_message.val("");
+    user_message.focus();
+}
+
+function doScroll()
+{
+    if ($("#auto_scroll").is(":checked"))
+    {
+        $("#chat_history").scrollTop($("#chat_history").prop("scrollHeight"));
+    }
+}
+
+function processarResposta(mensagem)
+{
+    var resposta_encontrada = "";
+    for(var i = 0; i < respostas.length; i++)
+    {
+        if (mensagem.indexOf(respostas[i].tag) > -1) 
+        {
+            resposta_encontrada = respostas[i].answer.trim();
+            break;
+        }
+    }
+
+    if (resposta_encontrada.trim() != "")
+    {
+        return resposta_encontrada.trim();
+    }
+    else
+    {
+        var x = Math.floor(Math.random() * respostasDefault.length);
+        return respostasDefault[x].xingamento;      
+    }
+}

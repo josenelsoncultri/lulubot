@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>LULUbot - o bot mais real da galáxia</title>
+<style>
+*{
+margin: 2px;
+}
+
+h3{
+
+    background-color: #00fff3;
+    width: 383px;
+   padding: 10px;
+    text-align: center;
+    vertical-align: middle;
+}
+.botao{
+    background-color: #413982;
+    color:white;
+    border:none;
+    width: 100px;
+    height: 20px;
+}
+.tela{
+    width: 400px;
+    height: 200px;
+    overflow-y:auto;
+    border-style: solid;
+    border-width: 1px;
+    border-color: grey;
+    background-color: #efeaea; 
+}
+.content{
+    margin-left: 30%;
+    margin-right: 20%;
+    margin-top: 10%;
+    
+}
+</style>
+
+
+</head> 
+<body>
+    <div class="content">
+<p><h3 style="font-family: arial;">Converse com o LULUbot</h1></p>
+<div id="tela" class="tela" >
+    <p id="mensagens" style="font-family: arial;"></p>
+</div>
+
+<input type="text" id="campo" value="" style="width:400px;" onchange="enviar()">
+<br>
+<!--<input type="button" class="botao" name="btnenter" value="Enviar" onclick="enviar()" > !-->
+
+</div>
+<script>
+    function enviar(){
+        var msg = document.getElementById("campo").value;
+        var label = document.getElementById("mensagens");
+        if (msg != ''){
+                      
+            label.innerHTML += 'eu: <span style= "color:#827f7f;">' + msg + '</span></br>';
+            setTimeout(function(){
+            var vocabulario = ["vsf","pnsc","tnc"]
+            var x = Math.floor(Math.random() * 3);
+            var objDiv = document.getElementById('tela');
+            var doScroll=objDiv.scrollTop>=(objDiv.scrollHeight-objDiv.clientHeight);                   
+            if (msg.search('só') > -1){
+                resposta = 'só';
+            }else if( msg.search('lulu') > -1){
+                    resposta = 'oi';
+            }else if(msg.search('pica') > -1 || msg.search('rola') > -1 || msg.search('pau') > -1){
+                    resposta = "opa";
+
+                }else{
+                        resposta = vocabulario[x] ;
+                
+                    
+            }
+                label.innerHTML +='lulubot: <span style= "color:#827f7f;">' + resposta + '</span></br>';
+                if( doScroll) objDiv.scrollTop = objDiv.scrollHeight;
+
+            },2000);
+        
+            document.getElementById("campo").value = '';
+        }
+    }
+</script>
+
+
+</body>
+
+
+<html>
