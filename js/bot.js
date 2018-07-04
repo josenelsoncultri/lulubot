@@ -2,6 +2,7 @@ var respostas = null;
 var respostasDefault = null;
 var delay = 2000;
 
+/* Comentário para teste */
 $(document).ready(function(){
     $.getJSON("data/custom_answers.json", function(data){
         respostas = $.parseJSON(JSON.stringify(data));
