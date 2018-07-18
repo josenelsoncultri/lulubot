@@ -1,6 +1,5 @@
 var respostas = null;
 var respostasDefault = null;
-var delay = 2000;
 
 $(document).ready(function(){
     $.getJSON("data/custom_answers.json", function(data){
@@ -14,14 +13,17 @@ $(document).ready(function(){
     $("#user_message").change(function(e){
         var chatHistory = $("#chat_history");
         var actual_message = "<strong>você:</strong> " + $(this).val();
-        var bot_answer = "LuluBOT: " + processarResposta($(this).val());
+        var bot_answer = processarResposta($(this).val());
+        var bot_full_answer = "LuluBOT: " + bot_answer;
 
         chatHistory.html(chatHistory.html() + (chatHistory.html().trim() != "" ? "<br />" : "") + actual_message);
         $(this).val("");
+        
+        var delay = 2000;
 
         lockText();
         setTimeout(function(){
-            chatHistory.html(chatHistory.html() + (chatHistory.html().trim() != "" ? "<br />" : "") + bot_answer);
+            chatHistory.html(chatHistory.html() + (chatHistory.html().trim() != "" ? "<br />" : "") + bot_full_answer);
             doScroll();
             unlockText();
         }, delay);
