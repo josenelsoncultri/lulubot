@@ -2,10 +2,10 @@ var respostas = null;
 var respostasDefault = null;
 
 $(document).ready(function(){
-    $.getJSON("data/custom_answers.json", function(data){
+    $.getJSON("https://josenelsoncultri.github.io/lulubot/data/custom_answers.json", function(data){
         respostas = $.parseJSON(JSON.stringify(data));
     });
-    $.getJSON("data/default_answers.json", function(data){
+    $.getJSON("https://josenelsoncultri.github.io/lulubot/data/default_answers.json", function(data){
         respostasDefault = $.parseJSON(JSON.stringify(data));
     });    
 
@@ -74,6 +74,12 @@ function processarResposta(mensagem)
     else
     {
         var x = Math.floor(Math.random() * respostasDefault.length);
-        return respostasDefault[x].xingamento;      
+		var resp = "";
+		resp = respostasDefault[x].xingamento;
+		if (respostasDefault[x].img_url)
+		{
+			resp += " <img src=\"" + respostasDefault[x].img_url + "\" />";
+		}
+        return resp;
     }
 }
