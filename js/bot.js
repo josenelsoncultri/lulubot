@@ -74,12 +74,17 @@ function processarResposta(mensagem)
     else
     {
         var x = Math.floor(Math.random() * respostasDefault.length);
-		var resp = "";
-		resp = respostasDefault[x].xingamento;
+        var resp = "";
+        
 		if (respostasDefault[x].img_url)
 		{
 			resp += " <img src=\"" + respostasDefault[x].img_url + "\" />";
-		}
+        }
+        else if (respostasDefault[x].xingamento)
+        {
+            resp = respostasDefault[x].xingamento;
+        }
+
         return resp;
     }
 }
