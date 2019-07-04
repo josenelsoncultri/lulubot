@@ -26,6 +26,10 @@ $(document).ready(function(){
             chatHistory.html(chatHistory.html() + (chatHistory.html().trim() != "" ? "<br />" : "") + bot_full_answer);
             doScroll();
             unlockText();
+
+            setTimeout(function(){
+                doScroll();
+            }, 1000);
         }, delay);
 
         doScroll();
