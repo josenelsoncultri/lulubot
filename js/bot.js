@@ -19,7 +19,7 @@ $(document).ready(function(){
         chatHistory.html(chatHistory.html() + (chatHistory.html().trim() != "" ? "<br />" : "") + actual_message);
         $(this).val("");
         
-        var delay = 2000;
+        var delay = 1000;
 
         lockText();
         setTimeout(function(){
@@ -51,7 +51,7 @@ function doScroll()
 {
     if ($("#auto_scroll").is(":checked"))
     {
-        $("#chat_history").scrollTop($("#chat_history").prop("scrollHeight"));
+        $("#chat_history").scrollTop($("#chat_history").prop("scrollHeight") + 300);
     }
 }
 
