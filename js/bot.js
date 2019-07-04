@@ -78,7 +78,7 @@ function processarResposta(mensagem)
         
 		if (respostasDefault[x].img_url)
 		{
-			resp += " <img src=\"" + respostasDefault[x].img_url + "\" />";
+			resp += "<br /><img class=\"chat_image\" src=\"" + respostasDefault[x].img_url + "\" />";
         }
         else if (respostasDefault[x].xingamento)
         {
